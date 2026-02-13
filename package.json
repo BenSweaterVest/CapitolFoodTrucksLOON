@@ -1,0 +1,58 @@
+{
+  "name": "loon",
+  "version": "1.0.0",
+  "description": "LOON - Lightweight Online Organizing Network: A serverless micro-CMS",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev . --config wrangler.dev.toml --port 8788",
+    "dev:kv": "wrangler pages dev . --config wrangler.dev.toml --port 8788 --kv LOON_DB",
+    "dev:kv:local": "wrangler pages dev . --config wrangler.local.toml --port 8788",
+    "test": "vitest run --reporter=verbose",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "setup:kv": "node scripts/setup-kv.mjs",
+    "setup:admin": "node scripts/setup-admin.mjs",
+    "setup:local": "npm run setup:kv && npm run check:env",
+    "backup:kv": "node scripts/backup-kv.mjs",
+    "restore:kv": "node scripts/restore-kv.mjs",
+    "lint": "npm run lint:js && npm run lint:json",
+    "lint:js": "node scripts/check-js-syntax.mjs",
+    "lint:json": "node scripts/validate-json.mjs",
+    "check:env": "node scripts/check-env.mjs",
+    "validate": "npm run lint && npm run test && npm run check:env",
+    "validate:ci": "npm run lint && npm run test:coverage && npm run check:env",
+    "release": "npm run validate && echo 'Ready for release'"
+  },
+  "dependencies": {
+    "cbor-x": "^1.5.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "@vitest/coverage-v8": "^1.6.1",
+    "miniflare": "^3.20240129.0",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_ORG/LOON.git"
+  },
+  "keywords": [
+    "cms",
+    "serverless",
+    "cloudflare",
+    "github",
+    "micro-cms",
+    "json"
+  ],
+  "author": "Project LOON Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YOUR_GITHUB_ORG/LOON/issues"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_ORG/LOON#readme"
+}
